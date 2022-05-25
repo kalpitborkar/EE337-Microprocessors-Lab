@@ -1,0 +1,67 @@
+A51 MACRO ASSEMBLER  Q2                                                                   02/14/2022 14:11:28 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\Q2.obj
+ASSEMBLER INVOKED BY: D:\Keil\C51\BIN\A51.EXE Q2.a51 SET(SMALL) DEBUG PRINT(.\Listings\Q2.lst) OBJECT(.\Objects\Q2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 3150              5     CALL EIGHT_BIT_TO_ASCII
+0102 80FE              6     HERE: SJMP HERE
+0150                   7     ORG 150H
+                       8     
+                       9             
+0150                  10     EIGHT_BIT_TO_ASCII:     
+0150 E530             11     MOV A, 30H  
+0152 540F             12     ANL A, #0FH  
+0154 3162             13     CALL LOWER_NIBBLE_TO_ASCII
+0156 F561             14     MOV 61H, A
+                      15     
+                      16     
+0158 E530             17     MOV A, 30H  
+015A C4               18     SWAP A  
+015B 540F             19     ANL A, #0FH  
+015D 3162             20     CALL LOWER_NIBBLE_TO_ASCII
+015F F560             21     MOV 60H, A
+0161 22               22     RET
+                      23     
+0162                  24     LOWER_NIBBLE_TO_ASCII:
+                      25     
+                      26     
+0162 B40A00           27     CJNE A, #0AH, NOT_EQUAL  
+                      28     
+0165                  29     NOT_EQUAL:
+0165 5003             30     JNC GREATER  
+0167 2430             31     ADD A, #30H  
+0169 22               32     RET
+                      33     
+016A                  34     GREATER:
+016A 2437             35     ADD A, #37H  
+016C 22               36     RET
+                      37     
+                      38     END
+A51 MACRO ASSEMBLER  Q2                                                                   02/14/2022 14:11:28 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                T Y P E  V A L U E   ATTRIBUTES
+
+EIGHT_BIT_TO_ASCII. .  C ADDR   0150H   A   
+GREATER . . . . . . .  C ADDR   016AH   A   
+HERE. . . . . . . . .  C ADDR   0102H   A   
+LOWER_NIBBLE_TO_ASCII  C ADDR   0162H   A   
+MAIN. . . . . . . . .  C ADDR   0100H   A   
+NOT_EQUAL . . . . . .  C ADDR   0165H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

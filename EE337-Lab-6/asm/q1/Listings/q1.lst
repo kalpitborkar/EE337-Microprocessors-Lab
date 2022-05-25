@@ -1,0 +1,86 @@
+A51 MACRO ASSEMBLER  Q1                                                                   03/07/2022 14:14:26 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\q1.obj
+ASSEMBLER INVOKED BY: D:\Keil\C51\BIN\A51.EXE q1.a51 SET(SMALL) DEBUG PRINT(.\Listings\q1.lst) OBJECT(.\Objects\q1.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+                       3     
+0100                   4     ORG 100H
+0100                   5     MAIN:
+0100 753004            6     MOV 30H, #04
+0103 759000            7     MOV P1, #00H
+0106                   8     REPEAT:
+0106 3129              9     CALL BLINK_LED
+0108 80FC             10     SJMP REPEAT
+                      11     
+                      12     
+010A                  13     TIMER_16_BIT_50000:
+010A 758901           14     MOV TMOD, #01H  
+010D 758C3C           15     MOV TH0, #3CH  
+0110 758AAF           16     MOV TL0, #0AFH
+                      17     
+0113 C28D             18     CLR TF0  
+0115 D28C             19     SETB TR0  
+0117 308DFD           20     LOOP1: JNB TF0, LOOP1  
+011A 22               21     RET
+                      22     
+011B                  23     DELAY_1S:
+                      24     
+011B 7828             25     MOV R0, #40  
+011D 310A             26     LOOP2: CALL TIMER_16_BIT_50000
+011F D8FC             27     DJNZ R0, LOOP2
+0121 22               28     RET
+                      29     
+0122                  30     CALL_DELAY_1S_N_TIMES:
+0122 A930             31     MOV R1, 30H  
+0124 311B             32     LOOP3: CALL DELAY_1S
+0126 D9FC             33     DJNZ R1, LOOP3
+0128 22               34     RET
+                      35     
+                      36     
+0129                  37     BLINK_LED:
+0129 B294             38     CPL P1.4
+012B B295             39     CPL P1.5
+012D B296             40     CPL P1.6
+012F B297             41     CPL P1.7
+0131 3122             42     CALL CALL_DELAY_1S_N_TIMES
+0133 22               43     RET
+                      44     
+                      45     
+                      46     
+                      47     
+                      48     END
+A51 MACRO ASSEMBLER  Q1                                                                   03/07/2022 14:14:26 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E                T Y P E  V A L U E   ATTRIBUTES
+
+BLINK_LED . . . . . .  C ADDR   0129H   A   
+CALL_DELAY_1S_N_TIMES  C ADDR   0122H   A   
+DELAY_1S. . . . . . .  C ADDR   011BH   A   
+LOOP1 . . . . . . . .  C ADDR   0117H   A   
+LOOP2 . . . . . . . .  C ADDR   011DH   A   
+LOOP3 . . . . . . . .  C ADDR   0124H   A   
+MAIN. . . . . . . . .  C ADDR   0100H   A   
+P1. . . . . . . . . .  D ADDR   0090H   A   
+REPEAT. . . . . . . .  C ADDR   0106H   A   
+TF0 . . . . . . . . .  B ADDR   0088H.5 A   
+TH0 . . . . . . . . .  D ADDR   008CH   A   
+TIMER_16_BIT_50000. .  C ADDR   010AH   A   
+TL0 . . . . . . . . .  D ADDR   008AH   A   
+TMOD. . . . . . . . .  D ADDR   0089H   A   
+TR0 . . . . . . . . .  B ADDR   0088H.4 A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
