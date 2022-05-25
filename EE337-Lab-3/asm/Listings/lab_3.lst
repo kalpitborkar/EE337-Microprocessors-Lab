@@ -1,0 +1,105 @@
+A51 MACRO ASSEMBLER  LAB_3                                                                01/31/2022 13:46:17 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\lab_3.obj
+ASSEMBLER INVOKED BY: D:\Keil\C51\BIN\A51.EXE lab_3.a51 SET(SMALL) DEBUG PRINT(.\Listings\lab_3.lst) OBJECT(.\Objects\la
+                      b_3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+0100 3130              5     CALL SEARCH
+0102 80FE              6     HERE: SJMP HERE
+0130                   7     ORG 130H
+                       8     
+                       9     
+0130                  10     SEARCH:
+0130 A830             11     MOV R0, 30H  
+0132 AA31             12     MOV R2, 31H  
+                      13     
+                      14     
+0134                  15     LOOP:
+                      16     
+                      17     
+0134 EA               18     MOV A, R2  
+0135 75F002           19     MOV B, #02H  
+0138 84               20     DIV AB  
+                      21     
+                      22     
+0139 601E             23     JZ NOTFOUND
+                      24     
+                      25     
+                      26     
+013B 28               27     ADD A, R0  
+013C F9               28     MOV R1, A  
+                      29     
+013D E7               30     MOV A, @R1  
+013E B53202           31     CJNE A, 32H, NOTEQUAL  
+                      32     
+                      33     
+0141 801A             34     SJMP FOUND  
+                      35     
+0143                  36     NOTEQUAL:
+                      37     
+0143 500C             38     JNC GREATER  
+                      39     
+                      40     
+                      41     
+0145 EA               42     MOV A, R2
+0146 2401             43     ADD A, #01H
+0148 75F002           44     MOV B, #02H
+014B 84               45     DIV AB
+014C FA               46     MOV R2, A
+                      47     
+014D E9               48     MOV A, R1
+014E F8               49     MOV R0, A
+014F 80E3             50     SJMP LOOP
+                      51     
+0151                  52     GREATER:
+                      53     
+                      54     
+0151 EA               55     MOV A, R2
+0152 75F002           56     MOV B, #02H
+0155 84               57     DIV AB
+A51 MACRO ASSEMBLER  LAB_3                                                                01/31/2022 13:46:17 PAGE     2
+
+0156 FA               58     MOV R2, A
+0157 80DB             59     SJMP LOOP
+                      60     
+0159                  61     NOTFOUND:
+0159 75330E           62     MOV 33H, #0EH  
+015C 22               63     RET
+                      64     
+                      65     
+                      66     
+015D                  67     FOUND: 
+015D 8933             68     MOV 33H, R1  
+015F 22               69     RET
+                      70     END
+A51 MACRO ASSEMBLER  LAB_3                                                                01/31/2022 13:46:17 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+B. . . . . . . . .  D ADDR   00F0H   A   
+FOUND. . . . . . .  C ADDR   015DH   A   
+GREATER. . . . . .  C ADDR   0151H   A   
+HERE . . . . . . .  C ADDR   0102H   A   
+LOOP . . . . . . .  C ADDR   0134H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+NOTEQUAL . . . . .  C ADDR   0143H   A   
+NOTFOUND . . . . .  C ADDR   0159H   A   
+SEARCH . . . . . .  C ADDR   0130H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

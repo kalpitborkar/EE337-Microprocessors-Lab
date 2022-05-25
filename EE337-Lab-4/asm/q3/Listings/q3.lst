@@ -1,0 +1,124 @@
+A51 MACRO ASSEMBLER  Q3                                                                   02/07/2022 15:14:32 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\q3.obj
+ASSEMBLER INVOKED BY: D:\Keil\C51\BIN\A51.EXE q3.a51 SET(SMALL) DEBUG PRINT(.\Listings\q3.lst) OBJECT(.\Objects\q3.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+0000                   1     ORG 0H
+0000 020100            2     LJMP MAIN
+0100                   3     ORG 100H
+0100                   4     MAIN:
+                       5     
+0100 755007            6     MOV 50H, #07H
+0103 755102            7     MOV 51H, #02H
+0106 755220            8     MOV 52H, #20H
+0109 755322            9     MOV 53H, #22H
+010C                  10     HERE:
+010C 3130             11     CALL DISPLAY_DATE
+010E 80FC             12     SJMP HERE
+0130                  13     ORG 130H
+                      14             
+                      15     
+0130                  16     DISPLAY_DATE:
+                      17     
+                      18     
+                      19     
+0130 E550             20     MOV A, 50H  
+0132 3147             21     CALL DISPLAY
+0134 3151             22     CALL DISPLAY_SLASH
+0136 E551             23     MOV A, 51H  
+0138 3147             24     CALL DISPLAY
+013A 3151             25     CALL DISPLAY_SLASH
+013C E552             26     MOV A, 52H  
+013E 3147             27     CALL DISPLAY
+0140 E553             28     MOV A, 53H  
+0142 3147             29     CALL DISPLAY
+0144 3151             30     CALL DISPLAY_SLASH
+0146 22               31     RET
+                      32             
+                      33             
+0147                  34     DISPLAY:  
+                      35     
+                      36     
+0147 F590             37     MOV P1, A
+0149 3158             38     CALL delay_1s
+                      39     
+                      40     
+014B C4               41     SWAP A  
+014C F590             42     MOV P1, A
+014E 3158             43     CALL delay_1s
+0150 22               44     RET
+                      45     
+0151                  46     DISPLAY_SLASH:
+0151 74FF             47     MOV A, #0FFH
+0153 F590             48     MOV P1, A
+0155 3158             49     CALL delay_1s
+0157 22               50     RET
+                      51     
+0158                  52     delay_1s:
+0158 7A05             53     MOV R2, #005H
+015A                  54     LOOP1:
+015A 315F             55     CALL delay_200ms
+015C DAFC             56     DJNZ R2, LOOP1
+015E 22               57     RET
+                      58             
+A51 MACRO ASSEMBLER  Q3                                                                   02/07/2022 15:14:32 PAGE     2
+
+                      59             
+015F                  60     delay_200ms:
+015F 79C8             61     MOV R1, #0C8H  
+0161                  62     LOOP:
+0161 3166             63     CALL delay_1ms
+0163 D9FC             64     DJNZ R1, LOOP
+0165 22               65     RET
+                      66     
+                      67     
+0166                  68     delay_1ms:
+0166 C000             69     push 00h
+0168 7804             70     mov r0, #4
+016A 3171             71     h2: acall delay_250us
+016C D8FC             72     djnz r0, h2
+016E D000             73     pop 00h
+0170 22               74     ret
+                      75     
+0171                  76     delay_250us:
+0171 C000             77     push 00h
+0173 78F4             78     mov r0, #244
+0175 D8FE             79     h1: djnz r0, h1
+0177 D000             80     pop 00h
+0179 22               81     ret
+                      82     
+                      83     
+                      84     
+                      85     END
+A51 MACRO ASSEMBLER  Q3                                                                   02/07/2022 15:14:32 PAGE     3
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+DELAY_1MS. . . . .  C ADDR   0166H   A   
+DELAY_1S . . . . .  C ADDR   0158H   A   
+DELAY_200MS. . . .  C ADDR   015FH   A   
+DELAY_250US. . . .  C ADDR   0171H   A   
+DISPLAY. . . . . .  C ADDR   0147H   A   
+DISPLAY_DATE . . .  C ADDR   0130H   A   
+DISPLAY_SLASH. . .  C ADDR   0151H   A   
+H1 . . . . . . . .  C ADDR   0175H   A   
+H2 . . . . . . . .  C ADDR   016AH   A   
+HERE . . . . . . .  C ADDR   010CH   A   
+LOOP . . . . . . .  C ADDR   0161H   A   
+LOOP1. . . . . . .  C ADDR   015AH   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+P1 . . . . . . . .  D ADDR   0090H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)

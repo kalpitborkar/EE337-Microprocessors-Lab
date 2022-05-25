@@ -1,0 +1,86 @@
+A51 MACRO ASSEMBLER  LAB_2_PROBLEM_2                                                      01/22/2022 17:28:47 PAGE     1
+
+
+MACRO ASSEMBLER A51 V8.2.7.0
+OBJECT MODULE PLACED IN .\Objects\lab_2_problem_2.obj
+ASSEMBLER INVOKED BY: D:\Keil\C51\BIN\A51.EXE lab_2_problem_2.a51 SET(SMALL) DEBUG PRINT(.\Listings\lab_2_problem_2.lst)
+                       OBJECT(.\Objects\lab_2_problem_2.obj) EP
+
+LOC  OBJ            LINE     SOURCE
+
+                       1     
+0000                   2     ORG 0H
+0000 020100            3     LJMP MAIN
+0100                   4     ORG 100H
+0100                   5     MAIN:
+0100 3130              6     CALL MAC
+0102 80FE              7     HERE: SJMP HERE
+0130                   8     ORG 130H
+                       9     
+0130                  10     MAC:
+                      11     
+0130 E570             12     MOV A, 70H
+0132 8573F0           13     MOV B, 73H
+0135 A4               14     MUL AB
+0136 FA               15     MOV R2, A 
+0137 A9F0             16     MOV R1, B 
+0139 E571             17     MOV A, 71H
+013B 8574F0           18     MOV B, 74H
+013E A4               19     MUL AB
+013F FC               20     MOV R4, A 
+0140 ABF0             21     MOV R3, B 
+0142 E572             22     MOV A, 72H
+0144 8575F0           23     MOV B, 75H
+0147 A4               24     MUL AB
+0148 FE               25     MOV R6, A 
+0149 ADF0             26     MOV R5, B 
+014B 314E             27     CALL ADD16
+014D 22               28     RET
+014E                  29     ADD16:
+                      30     
+014E C3               31     CLR C
+014F EA               32     MOV A, R2
+0150 2C               33     ADD A, R4
+0151 F578             34     MOV 78H, A  
+0153 E9               35     MOV A, R1
+0154 3B               36     ADDC A, R3
+0155 F577             37     MOV 77H, A
+0157 7400             38     MOV A, #00H
+0159 3400             39     ADDC A, #00H
+015B F576             40     MOV 76H, A
+                      41     
+                      42     
+015D C3               43     CLR C
+015E EE               44     MOV A, R6
+015F 2578             45     ADD A, 78H
+0161 F552             46     MOV 52H, A  
+0163 ED               47     MOV A, R5
+0164 3577             48     ADDC A, 77H
+0166 F551             49     MOV 51H, A
+0168 E576             50     MOV A, 76H
+016A 3400             51     ADDC A, #00H
+016C F550             52     MOV 50H, A
+                      53     
+                      54     
+                      55     
+016E 22               56     RET
+                      57     END
+A51 MACRO ASSEMBLER  LAB_2_PROBLEM_2                                                      01/22/2022 17:28:47 PAGE     2
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES
+
+ADD16. . . . . . .  C ADDR   014EH   A   
+B. . . . . . . . .  D ADDR   00F0H   A   
+HERE . . . . . . .  C ADDR   0102H   A   
+MAC. . . . . . . .  C ADDR   0130H   A   
+MAIN . . . . . . .  C ADDR   0100H   A   
+
+
+REGISTER BANK(S) USED: 0 
+
+
+ASSEMBLY COMPLETE.  0 WARNING(S), 0 ERROR(S)
